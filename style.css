@@ -1,0 +1,10 @@
+/* Adicione no <style> */
+.glow-btn {
+    box-shadow: 0 0 20px #ec4899, 0 0 40px #a855f7;
+    animation: glow 1.5s infinite alternate;
+}
+@keyframes glow {
+    from { box-shadow: 0 0 10px #ec4899, 0 0 20px #a855f7; }
+    to { box-shadow: 0 0 30px #ec4899, 0 0 60px #a855f7; }
+}
+

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Namoro Especial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .dancing-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .typewriter {
+            border-right: 3px solid;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #ec4899 }
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .photo-item {
+            transition: all 0.3s ease;
+        }
+        
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .photo-item img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .floating-hearts span {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ec4899;
+            pointer-events: none;
+            transform: rotate(45deg);
+        }
+        
+        .floating-hearts span::before,
+        .floating-hearts span::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ec4899;
+            border-radius: 50%;
+        }
+        
+        .floating-hearts span::before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .floating-hearts span::after {
+            top: 0;
+            left: -10px;
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden">
+    <div class="floating-hearts"></div>
+    
+    <div class="min-h-screen flex flex-col items-center justify-center px-4 py-12 relative z-10">
+        <div class="w-full max-w-3xl bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden transition-all duration-500">
+            <!-- Header Section -->
+            <div class="bg-gradient-to-r from-pink-500 to-purple-600 p-6 text-center">
+                <h1 class="dancing-font text-4xl md:text-5xl font-bold text-white mb-2">Meu Coração em Palavras</h1>
+                
+                <!-- Poema início -->
+                <p class="dancing-font text-xl text-white mb-4">
+                    🌙 Moonlight & ☀️ Sunshine<br><br>
+                    Entre a calma da noite e o nascer do dia,<br>
+                    há um segredo que só nós dois sabemos:<br>
+                    eu sou a lua que guarda sua alegria,<br>
+                    você é o sol que aquece os meus momentos.<br><br>
+                    Quando sua luz encontra meu silêncio,<br>
+                    a vida se veste de cores e canção.<br>
+                    Sunshine, você é o toque mais intenso,<br>
+                    que desperta a paz dentro do meu coração.<br><br>
+                    Se o destino pintou nossos céus juntos,<br>
+                    foi para nunca deixar de reluzir.<br>
+                    Pois entre o luar e o brilho profundo,<br>
+                    é só com você que eu quero existir.
+                </p>
+                <!-- Poema fim -->
+                
+                <p class="text-white/90 italic">"O amor não se vê com os olhos, mas com o coração."</p>
+            </div>
+            
+            <!-- Introduction Section -->
+            <div class="p-6 md:p-8">
+                <div class="typewriter text-center mb-8">
+                    <p class="dancing-font text-2xl md:text-3xl text-pink-600">Em cada palavra que escrevo, há um pedaço do meu coração...</p>
+                </div>
+                
+                <p class="text-gray-700 mb-6 text-center">
+                    Hoje, quero que você sinta toda a magia que existe entre nós. Cada letra que você digitar abaixo será como uma batida do meu coração por você.
+                </p>
+                
+                <!-- Special Phrase Input -->
+                <div class="mb-8">
+                    <label for="specialPhrase" class="block text-sm font-medium text-gray-700 mb-2 text-center">
+                        Digite sua frase especial e sinta a emoção a cada letra:
+                    </label>
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="specialPhrase" 
+                            class="w-full px-4 py-3 rounded-lg border-2 border-pink-300 focus:border-pink-500 focus:ring-pink-500 transition-all duration-300"
+                            placeholder="Escreva algo do seu coração..."
+                        >
+                        <div class="absolute right-3 top-3 text-pink-500 opacity-0 transition-opacity duration-300" id="heartIcon">
+                            <i class="fas fa-heart heartbeat"></i>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-4">
+                        <div class="w-16 h-1 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full" id="progressBar"></div>
+                    </div>
+                </div>
+                
+                <!-- Hidden Photo Gallery (Initially) -->
+                <div id="photoGallery" class="hidden mt-8">
+                    <h3 class="dancing-font text-2xl text-center text-pink-600 mb-6">Nossos Momentos Especiais</h3>
+                    <div class="photo-gallery">
+                        <!-- Placeholder photos - replace with your actual photos -->
+                        <div class="photo-item rounded-lg overflow-hidden shadow-md">
+                            <img src="IMG_1777.png" 
+                                 alt="Romantic moment" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="photo-item rounded-lg overflow-hidden shadow-md">
+                            <img src="https://images.unsplash.com/photo-1529333164857-423f65a8f140?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Romantic moment" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="photo-item rounded-lg overflow-hidden shadow-md">
+                            <img src="B14B4283-D141-44C3-988C-70367FBB83D2.jpg" 
+                                 alt="Romantic moment" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="photo-item rounded-lg overflow-hidden shadow-md">
+                            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                                 alt="Romantic moment" class="w-full h-48 object-cover">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Final Message (Initially Hidden) -->
+                <div id="finalMessage" class="hidden mt-12 text-center">
+                    <div class="bg-pink-50 border-l-4 border-pink-500 p-6 rounded-lg">
+                        <p class="dancing-font text-3xl text-pink-600 mb-4">Cada momento ao seu lado é um verso da nossa história.</p>
+                        <p class="text-gray-700 mb-6">Você é a pessoa que faz meu coração bater mais forte. Quer namorar comigo?</p>
+                        
+                        <div class="flex justify-center space-x-4">
+                            <button id="yesBtn" class="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                                Sim!  💖
+                            </button>
+                            <button id="noBtn" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors duration-300">
+                                Talvez...
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="bg-pink-50 p-4 text-center text-sm text-gray-600">
+                Feito com <i class="fas fa-heart text-pink-500"></i> especialmente para você
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confetti Effect Container -->
+    <div id="confettiContainer" class="fixed inset-0 pointer-events-none z-20 overflow-hidden hidden"></div>
+    
+    <!-- Background Music -->
+    <audio id="bgMusic" src="Canon in D (Pachelbel's Canon).mp3" loop autoplay></audio>
+    <button onclick="toggleMusic()" class="fixed bottom-6 right-6 z-30 bg-white/80 px-4 py-2 rounded-full shadow-lg text-pink-600 hover:bg-pink-100 transition-all duration-300">
+        <i class="fas fa-music"></i> Música
+    </button>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const specialPhraseInput = document.getElementById('specialPhrase');
+            const heartIcon = document.getElementById('heartIcon');
+            const progressBar = document.getElementById('progressBar');
+            const photoGallery = document.getElementById('photoGallery');
+            const finalMessage = document.getElementById('finalMessage');
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const confettiContainer = document.getElementById('confettiContainer');
+            const floatingHearts = document.querySelector('.floating-hearts');
+            
+            // Create floating hearts background
+            createFloatingHearts();
+            
+            // Sound effects
+            const heartSound = new Audio('heart.mp3'); // coloque o nome correto do arquivo
+            const completeSound = new Audio('AliançaTribalistas.mp3'); // coloque o nome correto do arquivo
+
+            // Função para fade-in do som
+            function playWithFadeIn(audio, duration = 400) {
+                audio.volume = 0;
+                audio.currentTime = 0;
+                audio.play();
+                let step = 0.05;
+                let interval = setInterval(() => {
+                    if (audio.volume < 1) {
+                        audio.volume = Math.min(audio.volume + step, 1);
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, duration * step);
+            }
+            
+            // Função para fade-out do som
+            function fadeOut(audio, duration = 600) {
+                let step = 0.05;
+                let interval = setInterval(() => {
+                    if (audio.volume > 0) {
+                        audio.volume = Math.max(audio.volume - step, 0);
+                    } else {
+                        audio.pause();
+                        clearInterval(interval);
+                    }
+                }, duration * step);
+            }
+            
+            // Typing effect
+            specialPhraseInput.addEventListener('input', function() {
+                // Show heart icon
+                heartIcon.classList.remove('opacity-0');
+                heartIcon.classList.add('opacity-100');
+                
+                // Play heart sound
+                heartSound.currentTime = 0;
+                heartSound.play();
+                
+                // Update progress bar
+                const progress = (this.value.length / 30) * 100;
+                progressBar.style.width = `${Math.min(progress, 100)}%`;
+                
+                // Change progress bar color based on progress
+                if (progress > 80) {
+                    progressBar.classList.remove('from-pink-400', 'to-purple-500');
+                    progressBar.classList.add('from-purple-500', 'to-pink-600');
+                } else if (progress > 50) {
+                    progressBar.classList.remove('from-pink-400', 'to-purple-500');
+                    progressBar.classList.add('from-pink-500', 'to-purple-600');
+                }
+                
+                // Hide heart icon after a delay if typing stops
+                clearTimeout(window.typingTimeout);
+                window.typingTimeout = setTimeout(() => {
+                    heartIcon.classList.remove('opacity-100');
+                    heartIcon.classList.add('opacity-0');
+                }, 1000);
+                
+                // Show gallery and final message when phrase is long enough
+                if (this.value.length >= 30 && photoGallery.classList.contains('hidden')) {
+                    photoGallery.classList.remove('hidden');
+                    photoGallery.classList.add('animate__animated', 'animate__fadeIn');
+                    
+                    setTimeout(() => {
+                        finalMessage.classList.remove('hidden');
+                        finalMessage.classList.add('animate__animated', 'animate__fadeIn');
+                    }, 1500);
+                }
+            });
+            
+            // Yes button click
+            yesBtn.addEventListener('click', function() {
+                createConfetti();
+                completeSound.currentTime = 0;
+                completeSound.volume = 1;
+                completeSound.play();
+                alert('💖 Eu sabia que você diria sim! Este é apenas o começo da nossa linda história juntos. Te amo! 💖');
+            });
+            
+            // No button behavior (just for fun)
+            noBtn.addEventListener('mouseover', function() {
+                // Move the button randomly
+                const x = Math.random() * (window.innerWidth - this.offsetWidth) * 0.7;
+                const y = Math.random() * (window.innerHeight - this.offsetHeight) * 0.7;
+                
+                this.style.position = 'absolute';
+                this.style.left = `${x}px`;
+                this.style.top = `${y}px`;
+                this.style.transition = 'all 0.3s ease';
+                
+                this.textContent = ['Tente novamente  😉', 'Você não pode dizer não!', 'Clique no SIM!', 'Eu sei que você quer dizer sim'][Math.floor(Math.random() * 4)];
+            });
+            
+            noBtn.addEventListener('click', function() {
+                this.textContent = "Ok, vou pensar melhor... SIM!";
+                setTimeout(() => {
+                    yesBtn.click();
+                }, 1000);
+            });
+            
+            // Create floating hearts in background
+            function createFloatingHearts() {
+                const heartsCount = 15;
+                
+                for (let i = 0; i < heartsCount; i++) {
+                    const heart = document.createElement('span');
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = Math.random() * 100 + 'vh';
+                    heart.style.opacity = Math.random() * 0.5 + 0.1;
+                    heart.style.transform = `rotate(45deg) scale(${Math.random() * 0.5 + 0.5})`;
+                    
+                    floatingHearts.appendChild(heart);
+                    
+                    animateHeart(heart);
+                }
+            }
+            
+            // Animate floating hearts
+            function animateHeart(heart) {
+                let posX = parseFloat(heart.style.left);
+                let posY = parseFloat(heart.style.top);
+                let speedX = (Math.random() - 0.5) * 0.2;
+                let speedY = (Math.random() - 0.5) * 0.2;
+                
+                function move() {
+                    posX += speedX;
+                    posY += speedY;
+                    
+                    // Bounce off edges
+                    if (posX <= 0 || posX >= 100) speedX *= -1;
+                    if (posY <= 0 || posY >= 100) speedY *= -1;
+                    
+                    heart.style.left = posX + 'vw';
+                    heart.style.top = posY + 'vh';
+                    
+                    requestAnimationFrame(move);
+                }
+                
+                move();
+            }
+            
+            // Create confetti effect
+            function createConfetti() {
+                confettiContainer.classList.remove('hidden');
+                
+                const colors = ['#ec4899', '#a855f7', '#6366f1', '#14b8a6', '#f59e0b'];
+                
+                for (let i = 0; i < 150; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'absolute';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.opacity = Math.random() * 0.8 + 0.2;
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    confettiContainer.appendChild(confetti);
+                    
+                    animateConfetti(confetti);
+                }
+            }
+            
+            // Animate confetti
+            function animateConfetti(confetti) {
+                let posY = -10;
+                let rotation = 0;
+                const speedY = Math.random() * 5 + 5;
+                const rotationSpeed = (Math.random() - 0.5) * 20;
+                const xMovement = (Math.random() - 0.5) * 2;
+                let xPos = parseFloat(confetti.style.left);
+                
+                function fall() {
+                    posY += speedY / 10;
+                    rotation += rotationSpeed;
+                    xPos += xMovement;
+                    
+                    confetti.style.top = posY + 'px';
+                    confetti.style.left = xPos + 'px';
+                    confetti.style.transform = `rotate(${rotation}deg)`;
+                    
+                    if (posY < window.innerHeight) {
+                        requestAnimationFrame(fall);
+                    } else {
+                        confetti.remove();
+                    }
+                }
+                
+                fall();
+            }
+        });
+        
+        function toggleMusic() {
+            const audio = document.getElementById('bgMusic');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
+</body>
+</html>
